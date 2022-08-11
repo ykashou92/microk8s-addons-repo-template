@@ -8,6 +8,7 @@ import click
 
 KUBECTL = os.path.expandvars("$SNAP/microk8s-kubectl.wrapper")
 SERVICE_NAME = "focalboard"
+MANIFESTS = f"addons/{SERVICE_NAME}/kubernetes"
 
 @click.command()
 def main():
@@ -25,10 +26,10 @@ def main():
         pass
         
     subprocess.check_call([
-        KUBECTL, "apply", "-f", f"{SERVICE_NAME}/kubernetes/deployment.yaml",
+        KUBECTL, "apply", "-f", f"{MANIFESTS}/deployment.yaml",
     ])
     subprocess.check_call([
-        KUBECTL, "apply", "-f", f"{SERVICE_NAME}kubernetes/service.yaml",
+        KUBECTL, "apply", "-f", f"{MANIFESTS}/service.yaml",
     ])
     
     click.echo(f"Enabled {SERVICE_NAME}")
