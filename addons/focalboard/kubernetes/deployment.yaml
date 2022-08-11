@@ -22,3 +22,11 @@ spec:
           ports:
           - containerPort: 8000
             name: http-focalboard
+          volumeMounts:
+          - mountPath: /data
+            name: focalboard-volume
+      volumes:
+      - name: focalboard-volume
+        hostPath:
+          path: /root/focalboard
+          type: DirectoryOrCreate
