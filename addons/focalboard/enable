@@ -10,7 +10,7 @@ KUBECTL = os.path.expandvars("$SNAP/microk8s-kubectl.wrapper")
 SERVICE_NAME = "focalboard"
 
 @click.command()
-def main(replicas):
+def main():
     click.echo(f"Enabling {SERVICE_NAME}")
     subprocess.check_call([
         KUBECTL, "create", "namespace", SERVICE_NAME,
