@@ -4,7 +4,7 @@ metadata:
   labels:
     app: focalboard
   name: focalboard
-  namespace: default
+  namespace: focalboard
 spec:
   replicas: 1
   selector:
