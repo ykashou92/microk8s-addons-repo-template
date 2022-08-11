@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: focalboard-service
-  namespace: default
+  namespace: focalboard
 status:
   loadBalancer: {}
 spec:

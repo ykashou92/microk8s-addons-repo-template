@@ -6,14 +6,15 @@ import os
 import subprocess
 
 KUBECTL = os.path.expandvars("$SNAP/microk8s-kubectl.wrapper")
+SERVICE_NAME = "focalboard"
 
 @click.command()
 def main():
-    click.echo("Disabling python-demo-nginx")
+    click.echo(f"Disabling {SERVICE_NAME}")
     subprocess.check_call([
-        KUBECTL, "delete", "deploy", "python-demo-nginx"
+        KUBECTL, "delete", "namespace", SERVICE_NAME
     ])
-    click.echo("Disabled python-demo-nginx")
+    click.echo(f"Disabled {SERVICE_NAME}")
 
 if __name__ == "__main__":
     main()

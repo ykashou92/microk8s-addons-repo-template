@@ -15,6 +15,10 @@ def main():
     """
     This function will enable focalboard.
 
+    It will create:
+        - a namespace
+        - a deployment
+        - a service
     """
     click.echo(f"Enabling {SERVICE_NAME}")
     click.echo(f"osgetcwd(): {os.getcwd()}")
@@ -23,7 +27,7 @@ def main():
             KUBECTL, "create", "namespace", SERVICE_NAME,
         ])
     except subprocess.CalledProcessError:
-        pass
+        click.echo(f"Enabling {SERVICE_NAME}")
         
     subprocess.check_call([
         KUBECTL, "apply", "-f", f"{MANIFESTS}/deployment.yaml",
