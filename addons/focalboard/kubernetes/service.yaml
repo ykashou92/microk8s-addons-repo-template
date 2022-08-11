@@ -10,6 +10,7 @@ spec:
     - protocol: TCP
       port: 8000
       targetPort: http-focalboard
+      nodePort: 30889
   selector:
     app: focalboard
   type: NodePort
