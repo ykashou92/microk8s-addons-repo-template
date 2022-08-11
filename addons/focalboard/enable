@@ -11,16 +11,26 @@ SERVICE_NAME = "focalboard"
 
 @click.command()
 def main():
+    """
+    This function will enable focalboard.
+
+    """
     click.echo(f"Enabling {SERVICE_NAME}")
-    subprocess.check_call([
-        KUBECTL, "create", "namespace", SERVICE_NAME,
-    ])
+    click.echo(f"osgetcwd(): {os.getcwd()}")
+    try:
+        subprocess.check_call([
+            KUBECTL, "create", "namespace", SERVICE_NAME,
+        ])
+    except subprocess.CalledProcessError:
+        pass
+        
     subprocess.check_call([
         KUBECTL, "apply", "-f", f"{SERVICE_NAME}/kubernetes/deployment.yaml",
     ])
     subprocess.check_call([
         KUBECTL, "apply", "-f", f"{SERVICE_NAME}kubernetes/service.yaml",
     ])
+    
     click.echo(f"Enabled {SERVICE_NAME}")
 
 if __name__ == "__main__":
