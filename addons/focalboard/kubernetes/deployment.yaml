@@ -15,6 +15,16 @@ spec:
       labels:
         app: focalboard
     spec:
+      initContainers:
+      - name: chmod-er
+        image: busybox:latest
+        command:
+        - /bin/chown
+        - nobody
+        - /data
+        volumeMounts:
+          - mountPath: /data
+            name: focalboard-volume
       containers:
         - image: mattermost/focalboard:latest
           imagePullPolicy: Always
@@ -28,5 +38,5 @@ spec:
       volumes:
       - name: focalboard-volume
         hostPath:
-          path: /var/snap/microk8s/common/default-storage/focalboard
+          path: /var/services/focalboard
           type: DirectoryOrCreate
