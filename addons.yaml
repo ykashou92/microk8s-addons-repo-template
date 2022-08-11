@@ -17,3 +17,11 @@ microk8s-addons:
         - amd64
         - arm64
         - s390x
+
+    - name: "focalboard"
+      description: "Focalboard is an easy-to-use project management system that's an alternative to Notion, Trello, and Asana, perfect for organizing your personal todos or running team projects."
+      version: "1.0.0"
+      check_status: "deployment.apps/focalboard"
+      supported_architectures:
+        - arm64
+        - amd64
