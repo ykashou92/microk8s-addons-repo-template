@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+# addons/python-hello-k8s/enable
+
+import os
+import subprocess
+
+import click
+
+KUBECTL = os.path.expandvars("$SNAP/microk8s-kubectl.wrapper")
+SERVICE_NAME = "focalboard"
+
+@click.command()
+def main(replicas):
+    click.echo(f"Enabling {SERVICE_NAME}")
+    subprocess.check_call([
+        KUBECTL, "create", "namespace", SERVICE_NAME,
+    ])
+    subprocess.check_call([
+        KUBECTL, "apply", "-f", "kubernetes/deployment.yaml",
+    ])
+    subprocess.check_call([
+        KUBECTL, "apply", "-f", "kubernetes/service.yaml",
+    ])
+    click.echo(f"Enabled {SERVICE_NAME}")
+
+if __name__ == "__main__":
+    main()

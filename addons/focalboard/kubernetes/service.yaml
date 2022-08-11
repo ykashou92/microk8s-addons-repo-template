@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: focalboard-service
+  namespace: default
+status:
+  loadBalancer: {}
+spec:
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: http-focalboard
+  selector:
+    app: focalboard
+  type: NodePort
