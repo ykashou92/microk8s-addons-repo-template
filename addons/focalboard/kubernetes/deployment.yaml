@@ -28,5 +28,5 @@ spec:
       volumes:
       - name: focalboard-volume
         hostPath:
-          path: /root/focalboard
+          path: /var/snap/microk8s/common/default-storage/focalboard
           type: DirectoryOrCreate
